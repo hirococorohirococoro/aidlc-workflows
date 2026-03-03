@@ -7,12 +7,7 @@ You can run AWS CodeBuild builds locally using the [CodeBuild local agent](https
 ### Prerequisites
 
 - Docker installed and running
-- The `codebuild_build.sh` script (if you need to re-download the script):
-
-```bash
-curl -O https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh
-chmod +x codebuild_build.sh
-```
+- The `codebuild_build.sh` script:
 
 ### Basic Usage
 
