@@ -16,7 +16,13 @@ chmod +x codebuild_build.sh
 
 ### Basic Usage
 
+* _optionally edit the `.github/workflows/codebuild.yml`'s `buildspec-override` value_
+
 ```bash
+if [ ! -f codebuild_build.sh ]; then
+  curl -O https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh && chmod +x codebuild_build.sh;
+fi;
+
 # pull the current buildspec.yml out of the workflow
 cat .github/workflows/codebuild.yml \
     | uvx yq -r '.jobs.build.steps[] | select(.id == "codebuild") | .with["buildspec-override"]' \
