@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: #fdf6e3;
+  color: #333;
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif;
+}
+
+/* ── 執筆ページ ─────────────────────── */
+
+.write-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  min-height: 100vh;
+  gap: 16px;
+}
+
+/* ── 原稿用紙グリッド ─────────────────── */
+
+.manuscript-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  width: min(640px, 100%);
+  aspect-ratio: 1 / 1;
+  border: 2px solid #8b6914;
+  background: #fffdf5;
+}
+
+/* ── セル ────────────────────────────── */
+
+.cell {
+  border: 1px solid #c9a84c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(10px, 2vw, 18px);
+  line-height: 1;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  user-select: none;
+}
+
+/* ── カーソルセル ─────────────────────── */
+
+.cell.cursor {
+  background: #fff3b0;
+  outline: 2px solid #e6a817;
+  outline-offset: -2px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { background: #fff3b0; }
+  50%       { background: #fde68a; }
+}
+
+/* ── DolphinIndicator ────────────────── */
+
+.dolphin-indicator {
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+}
