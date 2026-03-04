@@ -7,14 +7,14 @@
 - [x] Step 3: 必須成果物の定義
 - [x] Step 4: 確認質問の生成（下記参照）
 - [x] Step 5: application-design-plan.md に保存（このファイル）
-- [ ] Step 6: ユーザーへ質問提示 → 回答待ち
-- [ ] Step 7: 回答収集（全 [Answer]: タグ完了を確認）
-- [ ] Step 8: 回答の曖昧さ分析
-- [ ] Step 10: 設計成果物の生成
-  - [ ] components.md
-  - [ ] component-methods.md
-  - [ ] services.md
-  - [ ] component-dependency.md
+- [x] Step 6: ユーザーへ質問提示 → 回答待ち
+- [x] Step 7: 回答収集（全 [Answer]: タグ完了を確認）
+- [x] Step 8: 回答の曖昧さ分析（追加確認不要）
+- [x] Step 10: 設計成果物の生成
+  - [x] components.md
+  - [x] component-methods.md
+  - [x] services.md
+  - [x] component-dependency.md
 - [ ] Step 13: ユーザーによる承認待ち
 
 ---

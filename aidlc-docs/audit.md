@@ -90,3 +90,12 @@
 **Context**: INCEPTION - User Stories 完了 → Application Design へ
 
 ---
+
+## Session Continuity / Workflow Clarification
+**Timestamp**: 2026-03-04T11:23:19Z
+**User Input**: "Read CLAUDE.md and follow the AIDLC workflow"
+**AI Response**: CLAUDE.md と aidlc-state.md を再読し、ワークフロー状態（INCEPTION / Application Design 承認待ち）とリポジトリ内の実装コード存在に不整合があるため、進め方を確定する質問ファイル `aidlc-docs/workflow-clarification-questions.md` を作成。回答待ち。
+**Status**: Pending user answers
+**Context**: INCEPTION - Application Design (Approval Pending)
+
+---

@@ -29,9 +29,9 @@ body {
 
 .manuscript-grid {
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  width: min(640px, 100%);
-  aspect-ratio: 1 / 1;
+  /* grid-template-columns/rows は ManuscriptGrid.tsx のインラインスタイルで設定 */
+  width: min(640px, calc(100vw - 32px));
+  height: min(640px, calc(100vw - 32px));
   border: 2px solid #8b6914;
   background: #fffdf5;
 }
@@ -43,20 +43,49 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(10px, 2vw, 18px);
+  font-size: clamp(14px, 2.2vw, 20px);
   line-height: 1;
   min-width: 0;
   aspect-ratio: 1 / 1;
   user-select: none;
+  position: relative;
+  background: white;
+}
+
+/* 句読点（。、）や感嘆符（！？）: 右上寄せ */
+.cell.cell-punctuation {
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10% 10% 0 0;
+}
+
+/* 小書き仮名（ぁ、っ等）: 小さくして右上寄せ */
+.cell.cell-small-kana {
+  align-items: flex-start;
+  justify-content: flex-end;
+  font-size: 0.8em;
+  padding: 5% 5% 0 0;
+}
+
+/* 長音記号（ー）: 90度回転して縦に見せる */
+.cell.cell-chouon .chouon-inner {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+/* ラテン文字（英数字）: 縦中横（横書きのまま置く） */
+.cell.cell-latin {
+  text-combine-upright: all;
+  -webkit-text-combine: horizontal;
 }
 
 /* ── カーソルセル ─────────────────────── */
 
 .cell.cursor {
   background: #fff3b0;
-  outline: 2px solid #e6a817;
-  outline-offset: -2px;
+  box-shadow: inset 0 0 0 2px #e6a817;
   animation: blink 1s step-start infinite;
+  z-index: 1;
 }
 
 @keyframes blink {
@@ -64,13 +93,64 @@ body {
   50%       { background: #fde68a; }
 }
 
+/* ── レイアウト補助 ──────────────────── */
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  align-items: center;
+}
+
+.controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* ── CharacterCounter ────────────────── */
+
+.char-counter {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #8b6914;
+  background: #fff9e6;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #d4b465;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.char-counter .count {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.char-counter .target {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
 /* ── DolphinIndicator ────────────────── */
 
 .dolphin-indicator {
   font-size: 1.1rem;
   padding: 8px 16px;
-  background: #e0f2fe;
-  border: 1px solid #7dd3fc;
-  border-radius: 8px;
+  background: white;
+  border: 2px solid #7dd3fc;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.dolphin-indicator:hover {
+  transform: translateY(-2px);
 }

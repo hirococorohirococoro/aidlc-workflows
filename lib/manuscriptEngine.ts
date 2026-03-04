@@ -1,5 +1,27 @@
-import type { Cell, DolphinState } from './types'
-import { CHARS_PER_PAGE } from './constants'
+import type { Cell, CellType, DolphinState } from './types'
+import { CHARS_PER_PAGE, CELL_PLACEHOLDER } from './constants'
+
+const PUNCTUATION_CHARS = new Set([
+  '。', '、', '！', '？', '…', '・', '：', '；', '「', '」', '『', '』',
+])
+
+const SMALL_KANA = new Set([
+  'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ', 'っ', 'ゃ', 'ゅ', 'ょ', 'ゎ',
+  'ァ', 'ィ', 'ゥ', 'ェ', 'ォ', 'ッ', 'ャ', 'ュ', 'ョ', 'ヮ',
+])
+
+const CHOUON_CHARS = new Set(['ー', '〜'])
+
+// ASCII の印字可能文字（記号含む）
+const LATIN_RE = /^[\u0021-\u007E]$/
+
+function getCellType(char: string): CellType {
+  if (PUNCTUATION_CHARS.has(char)) return 'punctuation'
+  if (SMALL_KANA.has(char)) return 'small-kana'
+  if (CHOUON_CHARS.has(char)) return 'chouon'
+  if (LATIN_RE.test(char)) return 'latin'
+  return 'normal'
+}
 
 /**
  * テキストを Cell 配列に変換する。
@@ -11,7 +33,10 @@ export function splitTextToCells(text: string): Cell[] {
   return Array.from(text)
     .filter(c => c !== '\n')
     .slice(0, CHARS_PER_PAGE)
-    .map(char => ({ char }))
+    .map((char) => {
+      if (char === CELL_PLACEHOLDER) return { char: '' }
+      return { char, type: getCellType(char) }
+    })
 }
 
 /**
